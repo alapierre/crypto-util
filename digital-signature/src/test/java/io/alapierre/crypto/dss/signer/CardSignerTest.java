@@ -4,6 +4,7 @@ import eu.europa.esig.dss.model.DSSDocument;
 import eu.europa.esig.dss.token.PasswordInputCallback;
 import eu.europa.esig.dss.token.PrefilledPasswordCallback;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -30,6 +31,7 @@ class CardSignerTest {
     }
 
     @Test
+    @Disabled
     void testSign() throws IOException {
         DSSDocument signedDocument = signer.sign(Paths.get("src/test/resources", "pit_11.xml").toFile());
         File outFile = Paths.get("src/test/resources", "signed.xml").toFile();
