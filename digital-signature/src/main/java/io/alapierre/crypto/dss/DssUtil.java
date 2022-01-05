@@ -24,29 +24,31 @@ import static io.alapierre.crypto.misc.DllUtil.resolveDllAbsolutePathAndFileName
 @Slf4j
 public class DssUtil {
 
+    private DssUtil() {
+    }
+
     public static void printCerts() throws InvalidNameException {
 
         DllUtil.DllInfo dllInfo = resolveDllAbsolutePathAndFileName("/opt/proCertumSmartSign", "cryptoCertum3PKCS");
 
-        SignatureTokenConnection token = new Pkcs11SignatureToken(dllInfo.getFullPath(), new StdinPasswordInputCallback(), 1);
+        try (SignatureTokenConnection token = new Pkcs11SignatureToken(dllInfo.getFullPath(), new StdinPasswordInputCallback(), 1)) {
+            List<DSSPrivateKeyEntry> keys = token.getKeys();
+            int i = 0;
+            for (DSSPrivateKeyEntry entry : keys) {
+                System.out.println("Cert no " + (++i));
+                X509Certificate cert = entry.getCertificate().getCertificate();
+                Principal subject = cert.getSubjectDN();
+                System.out.println("name: " + subject.getName());
 
-        List<DSSPrivateKeyEntry> keys = token.getKeys();
-        int i = 0;
-        for (DSSPrivateKeyEntry entry : keys) {
-            System.out.println("Cert no " + (++i));
-            X509Certificate cert = entry.getCertificate().getCertificate();
-            Principal subject = cert.getSubjectDN();
-            System.out.println("name: " + subject.getName());
+                LdapName ldapDN = new LdapName(subject.getName());
 
-            LdapName ldapDN = new LdapName(subject.getName());
+                Map<String, String> m = ldapDN.getRdns().stream().
+                        collect(Collectors.
+                                toMap(Rdn::getType, rdn -> String.valueOf(rdn.getValue())));
 
-            Map<String, String> m = ldapDN.getRdns().stream().
-                    collect(Collectors.
-                            toMap(Rdn::getType, rdn -> String.valueOf(rdn.getValue())));
-
-            String cn = m.get("CN");
-            System.out.println(cn);
-
+                String cn = m.get("CN");
+                System.out.println(cn);
+            }
         }
     }
 }
