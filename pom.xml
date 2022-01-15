@@ -12,6 +12,7 @@
     <version>1.1-SNAPSHOT</version>
     <modules>
         <module>digital-signature</module>
+        <module>cipher</module>
     </modules>
     <packaging>pom</packaging>
 
