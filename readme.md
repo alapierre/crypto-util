@@ -1,5 +1,6 @@
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=alapierre_crypto-util&metric=alert_status)](https://sonarcloud.io/dashboard?id=alapierre_crypto-util)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+[![Maven Central](http://img.shields.io/maven-central/v/io.alapierre.crypto/crypto-util)](https://search.maven.org/artifact/io.alapierre.crypto/crypto-util)
 
 # Common Cryptography utils
 
