@@ -16,13 +16,15 @@ import java.security.spec.KeySpec;
 import java.util.Base64;
 
 /**
+ * Less secure AES Cipher based on CBC algorithm
+ *
  * @author Adrian Lapierre {@literal al@alapierre.io}
  * Copyrights by original author 2022.01.07
  */
 public class AesCipher {
 
     //CBC (Cipher Block Chaining)
-    public static final String ALGORITHM = "AES/CBC/PKCS5Padding";
+    public static final String CBC_ALGORITHM = "AES/CBC/PKCS5Padding";
 
     @NotNull
     public static String encrypt(@NotNull String input, @NotNull SecretKey key, @NotNull IvParameterSpec iv)
@@ -30,7 +32,7 @@ public class AesCipher {
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
 
-        Cipher cipher = Cipher.getInstance(ALGORITHM);
+        Cipher cipher = Cipher.getInstance(CBC_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key, iv);
         byte[] cipherText = cipher.doFinal(input.getBytes());
         return Base64.getEncoder().encodeToString(cipherText);
@@ -42,28 +44,10 @@ public class AesCipher {
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
 
-        Cipher cipher = Cipher.getInstance(ALGORITHM);
+        Cipher cipher = Cipher.getInstance(CBC_ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, key, iv);
         byte[] plainText = cipher.doFinal(Base64.getDecoder().decode(cipherText));
         return new String(plainText);
-    }
-
-    @NotNull
-    public static IvParameterSpec generateRandomIv() {
-        byte[] iv = new byte[16];
-        new SecureRandom().nextBytes(iv);
-        return new IvParameterSpec(iv);
-    }
-
-    @NotNull
-    public static String ivToString(@NotNull IvParameterSpec iv) {
-        return Base64.getEncoder().encodeToString(iv.getIV());
-    }
-
-    @NotNull
-    public static IvParameterSpec createIv(@NotNull String base64encodedString) {
-        val iv = Base64.getDecoder().decode(base64encodedString);
-        return new IvParameterSpec(iv);
     }
 
     @NotNull

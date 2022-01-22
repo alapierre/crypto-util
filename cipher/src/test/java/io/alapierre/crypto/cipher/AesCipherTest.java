@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 import static io.alapierre.crypto.cipher.AesCipher.*;
+import static io.alapierre.crypto.cipher.IvUtil.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
