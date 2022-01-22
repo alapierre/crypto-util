@@ -19,3 +19,4 @@ buildNumber.properties
 *.iml
 out
 gen
+digital-signature/src/test/resources/signed2.xml
