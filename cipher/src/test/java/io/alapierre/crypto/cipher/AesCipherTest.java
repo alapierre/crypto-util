@@ -1,9 +1,8 @@
 package io.alapierre.crypto.cipher;
 
 import lombok.val;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
+import org.junit.Assert;
+import org.junit.Test;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -14,18 +13,18 @@ import java.security.spec.InvalidKeySpecException;
 
 import static io.alapierre.crypto.cipher.AesCipher.*;
 import static io.alapierre.crypto.cipher.IvUtil.*;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * @author Adrian Lapierre {@literal al@alapierre.io}
  * Copyrights by original author 2022.01.22
  */
-class AesCipherTest {
+public class AesCipherTest {
 
     public static final String PLAIN_TEXT = "Ala ma kota, a kot ma Alę";
 
     @Test
-    void encrypt() throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+    public void encrypt() throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
 
         val iv = generateRandomIv();
         System.out.println(ivToString(iv));
@@ -35,11 +34,11 @@ class AesCipherTest {
                 iv);
 
         System.out.println(encrypted);
-        Assertions.assertNotNull(encrypted);
+        Assert.assertNotNull(encrypted);
     }
 
     @Test
-    void decrypt() throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+    public void decrypt() throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
 
         val secretText = "YY9xJB4+cQpCaBX2PDsoT5VZplf+asVpHrKiOfsdJp0=";
         val iv = "Fjk66YbVnH3bOn0aydM4fw==";
@@ -47,7 +46,7 @@ class AesCipherTest {
         val res = AesCipher.decrypt(secretText, getKeyFromPassword("secret", "5674321"), createIv(iv));
 
         System.out.println(res);
-        Assertions.assertNotNull(res);
-        Assertions.assertEquals(PLAIN_TEXT, res);
+        Assert.assertNotNull(res);
+        Assert.assertEquals(PLAIN_TEXT, res);
     }
 }

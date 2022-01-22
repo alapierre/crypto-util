@@ -2,10 +2,11 @@ package io.alapierre.crypto.cipher;
 
 import lombok.val;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -19,55 +20,54 @@ import java.security.spec.InvalidKeySpecException;
  * @author Adrian Lapierre {@literal al@alapierre.io}
  * Copyrights by original author 2022.01.22
  */
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class RsaCipherTest {
+public class RsaCipherTest {
 
     public static final String PLAIN_TEXT_MESSAGE = "Ala ma kota, a kot ma Alę";
 
-    @BeforeAll
-    void init() {
+    @BeforeClass
+    public static void init() {
         Security.addProvider(new BouncyCastleProvider());
     }
 
     @Test
-    void loadTestPK() throws IOException {
+    public void loadTestPK() throws IOException {
         val pk = RsaCipher.loadPrivateKey(new File("src/test/resources/private.pem"), "secret".toCharArray());
-        Assertions.assertNotNull(pk);
+        Assert.assertNotNull(pk);
     }
 
     @Test
-    void loadPublicKey() throws IOException {
+    public void loadPublicKey() throws IOException {
         val publicKey = RsaCipher.publicKeyFromPem(new File("src/test/resources/public.pem"));
-        Assertions.assertNotNull(publicKey);
+        Assert.assertNotNull(publicKey);
     }
 
     @Test
-    void loadPublicKeyInDerFormat() throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
+    public void loadPublicKeyInDerFormat() throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
         val publicKey = RsaCipher.publicKey(new File("src/test/resources/public.der"));
-        Assertions.assertNotNull(publicKey);
+        Assert.assertNotNull(publicKey);
     }
 
     @Test
-    void encryptWithDerPublicKey() throws IOException, InvalidKeySpecException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+    public void encryptWithDerPublicKey() throws IOException, InvalidKeySpecException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
         val publicKey = RsaCipher.publicKey(new File("src/test/resources/public.der"));
         val secret = RsaCipher.encode(PLAIN_TEXT_MESSAGE, publicKey);
         System.out.println(secret);
-        Assertions.assertNotNull(secret);
+        Assert.assertNotNull(secret);
     }
 
     @Test
-    void encryptTestFormFile() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    public void encryptTestFormFile() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
 
         val publicKey = RsaCipher.publicKeyFromPem(new File("src/test/resources/public.pem"));
         val res = RsaCipher.encode(PLAIN_TEXT_MESSAGE, publicKey);
 
         System.out.println(res);
 
-        Assertions.assertNotNull(res, "secret text should not be null");
+        Assert.assertNotNull(res, "secret text should not be null");
     }
 
     @Test
-    void decryptTest() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    public void decryptTest() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
 
         val pk = RsaCipher.loadPrivateKey(new File("src/test/resources/private.pem"), "secret".toCharArray());
 
@@ -79,11 +79,11 @@ class RsaCipherTest {
         val res = RsaCipher.decode(secretText, pk);
 
         System.out.println(res);
-        Assertions.assertEquals(PLAIN_TEXT_MESSAGE, res);
+        Assert.assertEquals(PLAIN_TEXT_MESSAGE, res);
     }
 
     @Test
-    void encryptTest() throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    public void encryptTest() throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
 
         KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
         generator.initialize(2048);
@@ -96,7 +96,7 @@ class RsaCipherTest {
 
         System.out.println(res);
 
-        Assertions.assertNotNull(res, "secret text should not be null");
+        Assert.assertNotNull(res, "secret text should not be null");
     }
 
 }

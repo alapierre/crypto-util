@@ -9,7 +9,8 @@
 
     <groupId>io.alapierre.crypto</groupId>
     <artifactId>crypto-util</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
+
     <modules>
         <module>digital-signature</module>
         <module>cipher</module>
@@ -34,11 +35,8 @@
         <connection>scm:git:git@github.com:alapierre/crypto-util.git</connection>
         <developerConnection>scm:git:git@github.com:alapierre/crypto-util.git</developerConnection>
         <url>https://github.com/alapierre/crypto-util</url>
-      <tag>HEAD</tag>
+      <tag>1.1</tag>
   </scm>
-
-
-
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -126,6 +124,11 @@
             </plugin>
 
             <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
@@ -142,6 +145,7 @@
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
