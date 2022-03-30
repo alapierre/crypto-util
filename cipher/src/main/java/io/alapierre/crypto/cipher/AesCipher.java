@@ -26,16 +26,36 @@ public class AesCipher {
     //CBC (Cipher Block Chaining)
     public static final String CBC_ALGORITHM = "AES/CBC/PKCS5Padding";
 
-    @NotNull
-    public static String encrypt(@NotNull String input, @NotNull SecretKey key, @NotNull IvParameterSpec iv)
+    public static byte[] encryptIntoBytes(@NotNull String input, @NotNull SecretKey key, @NotNull IvParameterSpec iv)
             throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
 
         Cipher cipher = Cipher.getInstance(CBC_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key, iv);
-        byte[] cipherText = cipher.doFinal(input.getBytes());
+        return cipher.doFinal(input.getBytes());
+    }
+
+    @NotNull
+    public static String encrypt(@NotNull String input, @NotNull SecretKey key, @NotNull IvParameterSpec iv)
+            throws NoSuchPaddingException, NoSuchAlgorithmException,
+            InvalidAlgorithmParameterException, InvalidKeyException,
+            BadPaddingException, IllegalBlockSizeException {
+
+        byte[] cipherText = encryptIntoBytes(input, key, iv);
         return Base64.getEncoder().encodeToString(cipherText);
+    }
+
+    @NotNull
+    public static String decrypt(byte[] cipherText, @NotNull SecretKey key, @NotNull IvParameterSpec iv)
+            throws NoSuchPaddingException, NoSuchAlgorithmException,
+            InvalidAlgorithmParameterException, InvalidKeyException,
+            BadPaddingException, IllegalBlockSizeException {
+
+        Cipher cipher = Cipher.getInstance(CBC_ALGORITHM);
+        cipher.init(Cipher.DECRYPT_MODE, key, iv);
+        byte[] plainText = cipher.doFinal(cipherText);
+        return new String(plainText);
     }
 
     @NotNull

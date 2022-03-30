@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.alapierre.crypto</groupId>
         <artifactId>crypto-util</artifactId>
-        <version>1.2-SNAPSHOT</version>
+        <version>1.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>digital-signature</artifactId>
