@@ -13,6 +13,8 @@ import java.util.Base64;
  */
 public class IvUtil {
 
+    private static final SecureRandom secureRandom = new SecureRandom();
+
     @NotNull
     public static IvParameterSpec generateRandomIv() {
         return generateRandomIv(16);
@@ -21,7 +23,7 @@ public class IvUtil {
     @NotNull
     public static IvParameterSpec generateRandomIv(int len) {
         byte[] iv = new byte[len];
-        new SecureRandom().nextBytes(iv);
+        secureRandom.nextBytes(iv);
         return new IvParameterSpec(iv);
     }
 

@@ -24,7 +24,7 @@ public class DllUtil {
     public static DllInfo resolveDllAbsolutePathAndFileName(String relativePathToDll, String dllName) {
         String pathToDll = Paths.get(relativePathToDll).toAbsolutePath().toString();
         String dllFileName = System.mapLibraryName(dllName);
-        log.debug("absolute path to PKCS11 card library: " + pathToDll + File.separator + dllFileName);
+        log.debug("absolute path to PKCS11 card library: {}", pathToDll + File.separator + dllFileName);
         return new DllInfo(pathToDll, dllFileName);
     }
 

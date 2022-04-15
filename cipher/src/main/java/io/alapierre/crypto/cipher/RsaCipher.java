@@ -91,9 +91,21 @@ public class RsaCipher {
      * @return read PrivateKey
      */
     public static PrivateKey loadPrivateKey(File privateKeyFile, char[] password) throws IOException {
+        try (FileReader keyReader = new FileReader(privateKeyFile)) {
+            return loadPrivateKey(keyReader, password);
+        }
+    }
 
-        try (FileReader keyReader = new FileReader(privateKeyFile);
-             PEMParser pemParser = new PEMParser(keyReader)) {
+    /**
+     * Loads encrypted private key in PEM format
+     *
+     * @param keyReader private key in PEM reader
+     * @throws FileNotFoundException if problem with reading private key file
+     * @return read PrivateKey
+     */
+    public static PrivateKey loadPrivateKey(Reader keyReader, char[] password) throws IOException {
+
+        try (PEMParser pemParser = new PEMParser(keyReader)) {
 
             Object object = pemParser.readObject();
 
@@ -121,7 +133,18 @@ public class RsaCipher {
     public static String encode(@NotNull String plainText, PublicKey publicKey) throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 
-        val message = plainText.getBytes();
+        return encode(plainText.getBytes(), publicKey);
+    }
+
+    /**
+     * Encrypts provided byte array message by RSA algorithm, and provide Base64 encoded string
+     *
+     * @param message to encrypt
+     * @return encrypted text Base64 encoded
+     */
+    @NotNull
+    public static String encode(byte[] message, PublicKey publicKey) throws NoSuchPaddingException,
+            NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 
         val cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
@@ -141,12 +164,17 @@ public class RsaCipher {
     public static String decode(@NotNull String encryptedTextBaseEncoded, PrivateKey privateKey) throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 
+        return new String(decodeAsBytes(encryptedTextBaseEncoded, privateKey));
+    }
+
+    public static byte[] decodeAsBytes(@NotNull String encryptedTextBaseEncoded, PrivateKey privateKey) throws NoSuchPaddingException,
+            NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+
         val encryptedText = Base64.getDecoder().decode(encryptedTextBaseEncoded);
 
         val cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
-        val plainText = cipher.doFinal(encryptedText);
-        return new String(plainText);
+        return cipher.doFinal(encryptedText);
     }
 
 }

@@ -71,7 +71,7 @@ public abstract class AbstractSigner {
             Date endDate = k.getCertificate().getNotAfter();
             Date startDate = k.getCertificate().getNotBefore();
 
-            log.debug("sprawdzam certyfikat " + startDate + " " + endDate);
+            log.debug("sprawdzam certyfikat {} {}", startDate, endDate);
 
             if(isDayInRange(now, startDate, endDate)) return k;
         }

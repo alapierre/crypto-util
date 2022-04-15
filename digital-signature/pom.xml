@@ -64,6 +64,13 @@
             <artifactId>dss-document</artifactId>
             <version>${digidoc4j.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.70</version>
+        </dependency>
+
         <dependency>
             <groupId>org.digidoc4j.dss</groupId>
             <artifactId>dss-service</artifactId>
@@ -74,12 +81,25 @@
             <artifactId>dss-tsl-validation</artifactId>
             <version>${digidoc4j.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.digidoc4j.dss</groupId>
-            <artifactId>dss-test</artifactId>
-            <scope>test</scope>
-            <version>${digidoc4j.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.digidoc4j.dss</groupId>-->
+<!--            <artifactId>dss-test</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--            <version>${digidoc4j.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.apache.santuario</groupId>-->
+<!--            <artifactId>xmlsec</artifactId>-->
+<!--            <version>2.3.0</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--            <artifactId>jackson-databind</artifactId>-->
+<!--            <version>2.13.2.2</version>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>org.digidoc4j.dss</groupId>
             <artifactId>dss-asic-cades</artifactId>
