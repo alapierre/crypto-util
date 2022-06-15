@@ -54,6 +54,9 @@ import java.util.*;
 @Slf4j
 public class RsaUtil {
 
+    private RsaUtil() {
+    }
+
     /**
      * Initialize BC provider, should be run one on application startup
      */

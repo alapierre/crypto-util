@@ -53,6 +53,8 @@ class RsaUtilTest {
                 KeyUsageEnum.SIGN_ENCRYPT,
                 keyPair);
 
+        Assertions.assertNotNull(csr);
+
         RsaUtil.savePem(csr, Files.newOutputStream(createTmpFile("csr", ".csr").toPath()));
 
         RsaUtil.savePem(keyPair.getPrivate(), "alamakota".toCharArray(), Files.newOutputStream(createTmpFile("id_key", ".pem").toPath()));
@@ -70,9 +72,13 @@ class RsaUtilTest {
 
         KeyPair keyPair = RsaUtil.generateKeyPair(4094);
 
+        Assertions.assertNotNull(keyPair);
+
         PKCS10CertificationRequest csr = RsaUtil.generateCSR("CN=Adrian Lapierre, OU=Java, O=ITrust sp. z o.o., C=PL, emailAddress=al@alapierre.io",
                 KeyUsageEnum.SIGN_ENCRYPT,
                 keyPair);
+
+        Assertions.assertNotNull(csr);
 
         LocalDate dateTo = LocalDate.now().plusYears(1);
 
@@ -83,6 +89,8 @@ class RsaUtilTest {
                 caKey,
                 new Date(),
                 java.sql.Date.valueOf(dateTo));
+
+        Assertions.assertNotNull(signed);
 
         @Cleanup JcaPEMWriter pemWriter = new JcaPEMWriter(new PrintWriter(System.out));
         pemWriter.writeObject(signed);
