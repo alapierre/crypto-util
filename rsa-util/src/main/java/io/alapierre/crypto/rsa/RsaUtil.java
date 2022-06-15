@@ -3,6 +3,7 @@ package io.alapierre.crypto.rsa;
 import lombok.Cleanup;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.bouncycastle.asn1.ASN1Encodable;
 import org.bouncycastle.asn1.ASN1ObjectIdentifier;
 import org.bouncycastle.asn1.pkcs.Attribute;
@@ -249,7 +250,7 @@ public class RsaUtil {
      * @return KeyPair
      * @throws IOException on problem with reading cert data
      */
-    public static KeyPair loadPrivateKey(@NonNull Reader reader) throws IOException {
+    public static KeyPair loadKeyPair(@NonNull Reader reader) throws IOException {
         try (PEMParser pemParser = new PEMParser(reader)) {
             PEMKeyPair pemKeyPair = (PEMKeyPair) pemParser.readObject();
             return new JcaPEMKeyConverter().getKeyPair(pemKeyPair);
@@ -271,6 +272,13 @@ public class RsaUtil {
                 throw new RuntimeException("The parsed object was not an X509CertificateHolder.");
             }
         }
+    }
+
+    public static PrivateKey loadPrivateKey(@NonNull Reader reader) throws IOException {
+        @Cleanup PEMParser pemParser = new PEMParser(reader);
+        JcaPEMKeyConverter converter = new JcaPEMKeyConverter();
+        val key = (PrivateKeyInfo) pemParser.readObject();
+        return converter.getPrivateKey(key);
     }
 
     /**
