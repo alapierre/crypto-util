@@ -207,11 +207,12 @@ public class RsaUtil {
      * @param holder holder to convert
      * @return converted certificate or empty value
      */
-    private static Optional<X509Certificate> convertToX509Certificates(@NonNull X509CertificateHolder holder) {
+    public static Optional<X509Certificate> convertToX509Certificates(@NonNull X509CertificateHolder holder) {
         JcaX509CertificateConverter converter = new JcaX509CertificateConverter();
         try {
             return Optional.of(converter.getCertificate(holder));
         } catch (CertificateException e) {
+            log.warn("Can't convert X509CertificateHolder to X509Certificate: {}", e.getMessage());
             return Optional.empty();
         }
     }
@@ -221,14 +222,14 @@ public class RsaUtil {
      * @param certChain certs to convert
      * @return converted array
      */
-    private static X509Certificate[] convertToX509Certificates(@NonNull List<X509CertificateHolder> certChain) {
+    public static X509Certificate[] convertToX509Certificates(@NonNull List<X509CertificateHolder> certChain) {
         JcaX509CertificateConverter converter = new JcaX509CertificateConverter();
 
         return certChain.stream().map(it -> {
             try {
                 return converter.getCertificate(it);
             } catch (CertificateException e) {
-                log.warn("problem converting certificate " + e.getMessage());
+                log.warn("Can't convert X509CertificateHolder to X509Certificate: {}", e.getMessage());
                 return null;
             }
         }).filter(Objects::nonNull).toArray(X509Certificate[]::new);
@@ -401,8 +402,15 @@ public class RsaUtil {
         SubjectPublicKeyInfo subPubKeyInfo = SubjectPublicKeyInfo.getInstance(tobeSigned.getEncoded());
         AsymmetricKeyParameter privateKeyAsymKeyParam = PrivateKeyFactory.createKey(caKey.getEncoded());
 
+        //val issuer = new X500Name(caCert.getIssuerX500Principal().getName());
+        // Powyższe nie zadziała - "order of the RDNs is reversed"
+        // https://stackoverflow.com/questions/23736305/certificate-generated-through-csr-signing-with-bouncycastle-considered-untrusted/23746169#23746169
+
+        X500Name issuer = X500Name.getInstance(caCert.getSubjectX500Principal().getEncoded());
+        log.debug("issuer {}", issuer);
+
         X509v3CertificateBuilder certGenerator = new X509v3CertificateBuilder(
-                new X500Name(caCert.getIssuerX500Principal().getName()),
+                issuer,
                 new BigInteger(64, new SecureRandom()),
                 from,
                 to,
@@ -420,7 +428,11 @@ public class RsaUtil {
         ContentSigner sigGen = new BcRSAContentSignerBuilder(sigAlgId, digAlgId).build(privateKeyAsymKeyParam);
         X509CertificateHolder certificateHolder = certGenerator.build(sigGen);
 
-        return new JcaX509CertificateConverter().setProvider("BC").getCertificate(certificateHolder);
+        val signed = convertToX509Certificates(certificateHolder)
+                .orElseThrow(() -> new CertificateException("Can't convert signed X509CertificateHolder to X509Certificate"));
+        log.debug("signed issuer {}", signed.getIssuerX500Principal());
+
+        return signed;
     }
 
     /**
