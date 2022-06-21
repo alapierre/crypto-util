@@ -48,7 +48,7 @@
         <annotations.version>23.0.0</annotations.version>
         <sonar.organization>alapierre</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <bc.version>1.70</bc.version>
+        <bc.version>1.71</bc.version>
     </properties>
 
     <build>
