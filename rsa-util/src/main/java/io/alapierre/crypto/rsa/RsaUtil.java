@@ -176,7 +176,8 @@ public class RsaUtil {
     }
 
     /**
-     * Pack private key with certificate chain into single PKCS12 password-protected keystore
+     * Pack private key with certificate chain into single PKCS12 password-protected keystore.
+     * Private key pass will be the same as keystore password.
      *
      * @param out OutputStream to store PKCS12
      * @param keystorePass password for PKCS12 file
@@ -190,12 +191,13 @@ public class RsaUtil {
     public static void packToPKCS12(@NonNull OutputStream out, char[] keystorePass, @NonNull PrivateKey privateKey,
                                     @NonNull X509Certificate[] certChain)
             throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
-        packToPKCS12(out, keystorePass, null, privateKey, certChain);
+        packToPKCS12(out, keystorePass, keystorePass, privateKey, certChain);
     }
 
 
         /**
          * Pack private key with certificate chain (X509CertificateHolder) into single PKCS12 password-protected file
+         *
          * @param outFile file to store PKCS12
          * @param pkPass password for private Key
          * @param keystorePass password for PKCS12 file
