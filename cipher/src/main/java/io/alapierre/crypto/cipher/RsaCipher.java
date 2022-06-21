@@ -24,6 +24,10 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 /**
+ * Less secure ECB RSA Cipher. The ECB (Electronic Codebook) mode doesn’t provide serious message confidentiality:
+ * under a given key any given plaintext block always gets encrypted to the same ciphertext block.
+ * This mode should be used only when it isn't other way. The GCM (Galois Counter Mode) mode is recommended in most cases.
+ *
  * @author Adrian Lapierre {@literal al@alapierre.io}
  * Copyrights by original author 2022.01.07
  */
