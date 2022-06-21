@@ -153,8 +153,9 @@ public class RsaUtil {
     }
 
     /**
-     * Pack private key with certificate chain (X509CertificateHolder) into single PKCS12 password-protected file
-     * @param outFile fole to store PKCS12
+     * Pack private key with certificate chain into single PKCS12 password-protected keystore
+     *
+     * @param out OutputStream to store PKCS12
      * @param pkPass password for private Key
      * @param keystorePass password for PKCS12 file
      * @param privateKey private key
@@ -164,17 +165,53 @@ public class RsaUtil {
      * @throws NoSuchAlgorithmException on problem with keystore creation
      * @throws IOException on problem with keystore IO operations
      */
+    public static void packToPKCS12(@NonNull OutputStream out, char[] pkPass, char[] keystorePass, @NonNull PrivateKey privateKey,
+                                    @NonNull X509Certificate[] certChain)
+            throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
+
+        KeyStore outStore = KeyStore.getInstance("PKCS12");
+        outStore.load(null, keystorePass);
+        outStore.setKeyEntry("mykey", privateKey, pkPass, certChain);
+        outStore.store(out, keystorePass);
+    }
+
+    /**
+     * Pack private key with certificate chain into single PKCS12 password-protected keystore
+     *
+     * @param out OutputStream to store PKCS12
+     * @param keystorePass password for PKCS12 file
+     * @param privateKey private key
+     * @param certChain certification chain
+     * @throws KeyStoreException on problem with KeyStore creation
+     * @throws CertificateException on problem with keystore creation
+     * @throws NoSuchAlgorithmException on problem with keystore creation
+     * @throws IOException on problem with keystore IO operations
+     */
+    public static void packToPKCS12(@NonNull OutputStream out, char[] keystorePass, @NonNull PrivateKey privateKey,
+                                    @NonNull X509Certificate[] certChain)
+            throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
+        packToPKCS12(out, keystorePass, null, privateKey, certChain);
+    }
+
+
+        /**
+         * Pack private key with certificate chain (X509CertificateHolder) into single PKCS12 password-protected file
+         * @param outFile file to store PKCS12
+         * @param pkPass password for private Key
+         * @param keystorePass password for PKCS12 file
+         * @param privateKey private key
+         * @param certChain certification chain
+         * @throws KeyStoreException on problem with KeyStore creation
+         * @throws CertificateException on problem with keystore creation
+         * @throws NoSuchAlgorithmException on problem with keystore creation
+         * @throws IOException on problem with keystore IO operations
+         */
     public static void packToPKCS12(@NonNull File outFile, char[] pkPass, char[] keystorePass, @NonNull PrivateKey privateKey,
                                     @NonNull List<X509CertificateHolder> certChain)
             throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
 
-        KeyStore outStore = KeyStore.getInstance("PKCS12");
-
-        outStore.load(null, keystorePass);
-
-        outStore.setKeyEntry("mykey", privateKey, pkPass, convertToX509Certificates(certChain));
         @Cleanup OutputStream outputStream = Files.newOutputStream(outFile.toPath());
-        outStore.store(outputStream, keystorePass);
+        packToPKCS12(outputStream, pkPass, keystorePass, privateKey, convertToX509Certificates(certChain));
     }
 
     /**
@@ -193,13 +230,8 @@ public class RsaUtil {
                                     @NonNull X509Certificate[] certChain)
             throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
 
-        KeyStore outStore = KeyStore.getInstance("PKCS12");
-
-        outStore.load(null, keystorePass);
-
-        outStore.setKeyEntry("mykey", privateKey, pkPass, certChain);
         @Cleanup OutputStream outputStream = Files.newOutputStream(outFile.toPath());
-        outStore.store(outputStream, keystorePass);
+        packToPKCS12(outputStream, pkPass, keystorePass, privateKey, certChain);
     }
 
     /**

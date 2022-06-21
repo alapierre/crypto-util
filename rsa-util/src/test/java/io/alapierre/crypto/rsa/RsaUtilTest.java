@@ -2,6 +2,7 @@ package io.alapierre.crypto.rsa;
 
 import lombok.Cleanup;
 import lombok.val;
+import org.bouncycastle.cert.X509CertificateHolder;
 import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
 import org.bouncycastle.openssl.jcajce.JcaPEMWriter;
 import org.bouncycastle.pkcs.PKCS10CertificationRequest;
@@ -17,6 +18,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.security.KeyPair;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -94,6 +96,11 @@ class RsaUtilTest {
 
         @Cleanup JcaPEMWriter pemWriter = new JcaPEMWriter(new PrintWriter(System.out));
         pemWriter.writeObject(signed);
+
+        val certChain = Arrays.asList(new X509CertificateHolder(signed.getEncoded()), cert);
+
+        RsaUtil.packToPKCS12(createTmpFile("stamp", ".p12"), null, "123ewqasd".toCharArray(),
+                keyPair.getPrivate(), certChain);
     }
 
     private File createTmpFile(String prefix, String suffix) throws IOException {
