@@ -149,7 +149,7 @@
             <groupId>org.apache.santuario</groupId>
             <artifactId>xmlsec</artifactId>
             <!--suppress MavenPackageUpdate -->
-            <version>2.2.4</version>
+            <version>2.3.2</version>
         </dependency>
 
         <dependency>
