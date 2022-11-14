@@ -57,7 +57,6 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
-        <!-- update BC to 1.71 jdk18on -->
 
         <dependency>
             <groupId>org.bouncycastle</groupId>
@@ -144,12 +143,18 @@
             <version>${digidoc4j.version}</version>
         </dependency>
 
-        <!-- to eliminate CVE-2021-40690 -->
+        <!-- to eliminate CVE-2021-40690 CVE-2022-40152  -->
         <dependency>
             <groupId>org.apache.santuario</groupId>
             <artifactId>xmlsec</artifactId>
             <!--suppress MavenPackageUpdate -->
-            <version>2.2.4</version>
+            <version>3.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.woodstox</groupId>
+            <artifactId>woodstox-core</artifactId>
+            <version>6.4.0</version>
         </dependency>
 
         <dependency>
