@@ -43,7 +43,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <slf4j.version>2.0.6</slf4j.version>
-        <logback-classic.version>1.4.4</logback-classic.version>
+        <logback-classic.version>1.4.5</logback-classic.version>
         <lombok.version>1.18.24</lombok.version>
         <annotations.version>23.1.0</annotations.version>
         <sonar.organization>alapierre</sonar.organization>
