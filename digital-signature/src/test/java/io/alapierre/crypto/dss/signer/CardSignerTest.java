@@ -31,7 +31,7 @@ class CardSignerTest {
         // For KIR Szafir cards, in linux the real file name is 'libccgraphitep11', but you need use ccgraphitep11 - lib is added (do not know why)
         // In windows use CCGraphiteP11p.x64
         // lib can be downloaded from KIR website https://www.elektronicznypodpis.pl/informacje/aplikacje/
-        signer = new CardSigner("/mnt/dane/realizacje/nttdata/ksef/card_libs", "ccgraphitep11", 1, callback);
+        signer = new CardSigner("../card_libs", "ccgraphitep11", 1, callback);
     }
 
     @Test
