@@ -39,3 +39,22 @@ Linux `ccgraphitep11.so` do pobrania ze strony producenta https://www.elektronic
 
 `C:\Windows\System32\asepkcs.dll`
 
+## PWPW
+
+Dla kart Cryptotech (Carbon I Multisign):
+
+`C:\Program Files (x86)\CryptoTech\CryptoCard\CCPkiP11.dll` (dla Windows 32 bit)
+`C:\Program Files\CryptoTech\CryptoCard\CCP1164.dll` (dla Windows 64 bit)
+
+Dla kart Gemalto:
+
+`C:\Program Files\Gemalto\Classic Client\BIN\gclib.dll` (wersja 64 bit)
+`C:\Program Files (x86)\Gemalto\Classic Client\BIN\gclib.dll` (wersja 32 bit)
+
+## PWPW – Karty DARK
+
+`C:\WINDOWS\System32\asepkcs.dll`
+`C:\WINDOWS\ SysWOW64\asepkcs.dll`
+
+https://sigillum.pl/Pliki 
+
