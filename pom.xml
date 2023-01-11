@@ -45,7 +45,7 @@
         <slf4j.version>2.0.6</slf4j.version>
         <logback-classic.version>1.4.5</logback-classic.version>
         <lombok.version>1.18.24</lombok.version>
-        <annotations.version>23.1.0</annotations.version>
+        <annotations.version>24.0.0</annotations.version>
         <sonar.organization>alapierre</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <bc.version>1.72</bc.version>
