@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.alapierre.crypto</groupId>
-        <artifactId>digital-singnature-master</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
+        <artifactId>digital-signature-master</artifactId>
+        <version>1.9-SNAPSHOT</version>
     </parent>
 
     <artifactId>digital-signature-pdf</artifactId>

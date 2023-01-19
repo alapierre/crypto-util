@@ -9,13 +9,13 @@
 
     <groupId>io.alapierre.crypto</groupId>
     <artifactId>crypto-util</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>1.9-SNAPSHOT</version>
 
     <modules>
         <module>digital-signature</module>
         <module>cipher</module>
         <module>rsa-util</module>
-        <module>digital-singnature-master</module>
+        <module>digital-signature-master</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -128,6 +128,7 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
             </plugin>
