@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.alapierre.crypto</groupId>
         <artifactId>digital-singnature-master</artifactId>
-        <version>1.8-SNAPSHOT</version>
+        <version>2.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>digital-signature-pdf</artifactId>
