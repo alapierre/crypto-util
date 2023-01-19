@@ -15,6 +15,8 @@
         <module>digital-signature</module>
         <module>cipher</module>
         <module>rsa-util</module>
+        <module>digital-singnature-master</module>
+        <module>digital-singnature-master/digital-signature-pdf</module>
     </modules>
     <packaging>pom</packaging>
 
