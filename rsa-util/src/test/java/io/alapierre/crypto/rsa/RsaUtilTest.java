@@ -114,6 +114,32 @@ class RsaUtilTest {
 
     }
 
+    @Test
+    void signAndVerify() throws Exception {
 
+        val pair = RsaUtil.generateKeyPair(2048);
+        val message = "Ala ma kota".getBytes();
+        val signature = RsaUtil.signMessage(message, pair.getPrivate());
+
+        val result = RsaUtil.verifySignature(message, signature, pair.getPublic());
+        System.out.println(result);
+
+        Assertions.assertTrue(result, "Signature do not match");
+
+    }
+
+    @Test
+    void signNotMatch() throws Exception {
+
+        val pair = RsaUtil.generateKeyPair(2048);
+        val message = "Ala ma kota".getBytes();
+        val signature = RsaUtil.signMessage(message, pair.getPrivate());
+
+        val result = RsaUtil.verifySignature("Ala ma kota1".getBytes(), signature, pair.getPublic());
+        System.out.println(result);
+
+        Assertions.assertFalse(result, "Signature do not match");
+
+    }
 
 }

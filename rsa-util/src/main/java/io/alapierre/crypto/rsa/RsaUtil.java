@@ -20,6 +20,7 @@ import org.bouncycastle.crypto.digests.SHA512Digest;
 import org.bouncycastle.crypto.params.AsymmetricKeyParameter;
 import org.bouncycastle.crypto.signers.RSADigestSigner;
 import org.bouncycastle.crypto.util.PrivateKeyFactory;
+import org.bouncycastle.crypto.util.PublicKeyFactory;
 import org.bouncycastle.openssl.PEMKeyPair;
 import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.PKCS8Generator;
@@ -368,6 +369,15 @@ public class RsaUtil {
         } catch (Exception ex) {
             throw new RuntimeException("Cannot generate RSA signature. " + ex.getMessage(), ex);
         }
+    }
+
+    public static boolean verifySignature(byte[] messageBytes, byte[] signature, PublicKey publicKey) throws IOException {
+
+        RSADigestSigner signer = new RSADigestSigner(new SHA512Digest());
+
+        signer.init(false, PublicKeyFactory.createKey(publicKey.getEncoded()));
+        signer.update(messageBytes, 0, messageBytes.length);
+        return signer.verifySignature(signature);
     }
 
     /**
