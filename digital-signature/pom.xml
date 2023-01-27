@@ -106,18 +106,6 @@
             </exclusions>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>eu.europa.ec.joinup.sd-dss</groupId>-->
-<!--            <artifactId>dss-tsl-validation</artifactId>-->
-<!--            <version>${digidoc4j.version}</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>eu.europa.ec.joinup.sd-dss</groupId>-->
-<!--            <artifactId>dss-asic-cades</artifactId>-->
-<!--            <version>${digidoc4j.version}</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>eu.europa.ec.joinup.sd-dss</groupId>
             <artifactId>dss-xades</artifactId>
@@ -130,19 +118,11 @@
             <version>${digidoc4j.version}</version>
         </dependency>
 
-        <!-- this was for older version of dss it could by change by setting xmlsec.version property -->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.santuario</groupId>-->
-<!--            <artifactId>xmlsec</artifactId>-->
-<!--            <version>2.2.2</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.4.0-b180830.0359</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.fasterxml.woodstox</groupId>
@@ -160,18 +140,6 @@
             <artifactId>dss-utils-apache-commons</artifactId>
             <version>${digidoc4j.version}</version>
         </dependency>
-
-        <!--        <dependency>-->
-<!--            <groupId>eu.europa.ec.joinup.sd-dss</groupId>-->
-<!--            <artifactId>dss-utils-google-guava</artifactId>-->
-<!--            <version>${digidoc4j.version}</version>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.bouncycastle</groupId>-->
-<!--                    <artifactId>bcprov-jdk15on</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
