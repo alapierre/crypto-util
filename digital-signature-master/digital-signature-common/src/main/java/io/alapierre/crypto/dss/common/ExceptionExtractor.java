@@ -1,6 +1,5 @@
 package io.alapierre.crypto.dss.common;
 
-import eu.europa.esig.dss.model.DSSException;
 import lombok.NonNull;
 
 import java.util.Optional;

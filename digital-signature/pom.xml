@@ -106,17 +106,17 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>eu.europa.ec.joinup.sd-dss</groupId>
-            <artifactId>dss-tsl-validation</artifactId>
-            <version>${digidoc4j.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>eu.europa.ec.joinup.sd-dss</groupId>-->
+<!--            <artifactId>dss-tsl-validation</artifactId>-->
+<!--            <version>${digidoc4j.version}</version>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>eu.europa.ec.joinup.sd-dss</groupId>
-            <artifactId>dss-asic-cades</artifactId>
-            <version>${digidoc4j.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>eu.europa.ec.joinup.sd-dss</groupId>-->
+<!--            <artifactId>dss-asic-cades</artifactId>-->
+<!--            <version>${digidoc4j.version}</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>eu.europa.ec.joinup.sd-dss</groupId>
