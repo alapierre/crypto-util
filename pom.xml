@@ -9,7 +9,7 @@
 
     <groupId>io.alapierre.crypto</groupId>
     <artifactId>crypto-util</artifactId>
-    <version>1.9-SNAPSHOT</version>
+    <version>1.9</version>
 
     <modules>
         <module>digital-signature</module>
@@ -37,7 +37,7 @@
         <connection>scm:git:git@github.com:alapierre/crypto-util.git</connection>
         <developerConnection>scm:git:git@github.com:alapierre/crypto-util.git</developerConnection>
         <url>https://github.com/alapierre/crypto-util</url>
-      <tag>HEAD</tag>
+      <tag>1.9</tag>
   </scm>
 
     <properties>
