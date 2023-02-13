@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.alapierre.crypto</groupId>
         <artifactId>digital-signature-master</artifactId>
-        <version>1.11-SNAPSHOT</version>
+        <version>1.11</version>
     </parent>
 
     <artifactId>digital-signature-common</artifactId>
