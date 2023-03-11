@@ -40,13 +40,22 @@ public class CardSigner extends Signer {
     private final PasswordInputCallback passwordInputCallback;
 
     public @NotNull DSSDocument signDocument(@NonNull InputStream document) {
-
         DSSDocument toSignDocument = new InMemoryDocument(document);
+        return sign(toSignDocument);
+    }
+
+    public @NotNull DSSDocument signDocument(byte[] document) {
+        DSSDocument toSignDocument = new InMemoryDocument(document);
+        return sign(toSignDocument);
+    }
+
+    @NotNull
+    private DSSDocument sign(@NotNull DSSDocument toSignDocument) {
 
         DllUtil.DllInfo dllInfo = resolveDllAbsolutePathAndFileName(relativePathToDll, dllName);
-
         try (val signingToken = new Pkcs11SignatureToken(dllInfo.getFullPath(), passwordInputCallback, slot)) {
             return singPades(toSignDocument, signingToken);
         }
     }
+
 }
