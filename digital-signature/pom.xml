@@ -12,7 +12,7 @@
     <artifactId>digital-signature</artifactId>
 
     <properties>
-        <digidoc4j.version>5.11.1</digidoc4j.version>
+        <digidoc4j.version>5.12.1</digidoc4j.version>
     </properties>
 
     <build>
@@ -90,6 +90,10 @@
                     <artifactId>dss-crl-parser</artifactId>
                     <groupId>org.digidoc4j.dss</groupId>
                 </exclusion>
+<!--                <exclusion>-->
+<!--                    <artifactId>jakarta.xml.bind-api</artifactId>-->
+<!--                    <groupId>jakarta.xml.bind</groupId>-->
+<!--                </exclusion>-->
             </exclusions>
         </dependency>
 
@@ -116,18 +120,6 @@
             <groupId>eu.europa.ec.joinup.sd-dss</groupId>
             <artifactId>dss-token</artifactId>
             <version>${digidoc4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.4.0-b180830.0359</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.woodstox</groupId>
-            <artifactId>woodstox-core</artifactId>
-            <version>6.5.0</version>
         </dependency>
 
         <dependency>

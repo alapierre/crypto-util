@@ -44,13 +44,13 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j.version>2.0.6</slf4j.version>
-        <logback-classic.version>1.4.5</logback-classic.version>
-        <lombok.version>1.18.26</lombok.version>
+        <slf4j.version>2.0.7</slf4j.version>
+        <logback-classic.version>1.4.11</logback-classic.version>
+        <lombok.version>1.18.28</lombok.version>
         <annotations.version>24.0.0</annotations.version>
         <sonar.organization>alapierre</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <bc.version>1.72</bc.version>
+        <bc.version>1.76</bc.version>
     </properties>
 
     <build>
