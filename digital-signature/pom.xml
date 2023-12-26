@@ -12,7 +12,7 @@
     <artifactId>digital-signature</artifactId>
 
     <properties>
-        <digidoc4j.version>5.13.RC1</digidoc4j.version>
+        <digidoc4j.version>5.13</digidoc4j.version>
     </properties>
 
     <build>
