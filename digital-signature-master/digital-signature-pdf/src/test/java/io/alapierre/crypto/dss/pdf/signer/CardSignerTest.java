@@ -3,6 +3,7 @@ package io.alapierre.crypto.dss.pdf.signer;
 import eu.europa.esig.dss.token.PasswordInputCallback;
 import eu.europa.esig.dss.token.PrefilledPasswordCallback;
 import lombok.val;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
@@ -20,6 +21,7 @@ class CardSignerTest {
     private final PasswordInputCallback callback = new PrefilledPasswordCallback(new KeyStore.PasswordProtection(pin.toCharArray()));
 
     @Test
+    @Disabled
     void testSign() throws IOException {
 
         val signer = new CardSigner("/opt/proCertumSmartSign", "cryptoCertum3PKCS", 1, callback);
