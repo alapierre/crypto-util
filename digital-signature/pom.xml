@@ -12,7 +12,7 @@
     <artifactId>digital-signature</artifactId>
 
     <properties>
-        <digidoc4j.version>5.13.RC1</digidoc4j.version>
+        <digidoc4j.version>6.0</digidoc4j.version>
     </properties>
 
     <build>
@@ -58,43 +58,20 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
-        <!--
-        in dss master pom: <bouncycastle.version>1.70</bouncycastle.version>
-        -->
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk18on</artifactId>
-            <version>${bc.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk18on</artifactId>
-            <version>${bc.version}</version>
         </dependency>
-
-        <!-- Xades digital signature-->
-
-<!--        eu.europa.ec.joinup.sd-dss-->
 
         <dependency>
             <groupId>eu.europa.ec.joinup.sd-dss</groupId>
             <artifactId>dss-document</artifactId>
             <version>${digidoc4j.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bouncycastle</groupId>
-                    <artifactId>bcpkix-jdk15on</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>dss-crl-parser</artifactId>
-                    <groupId>org.digidoc4j.dss</groupId>
-                </exclusion>
-<!--                <exclusion>-->
-<!--                    <artifactId>jakarta.xml.bind-api</artifactId>-->
-<!--                    <groupId>jakarta.xml.bind</groupId>-->
-<!--                </exclusion>-->
-            </exclusions>
         </dependency>
 
 
@@ -102,12 +79,6 @@
             <groupId>eu.europa.ec.joinup.sd-dss</groupId>
             <artifactId>dss-service</artifactId>
             <version>${digidoc4j.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bouncycastle</groupId>
-                    <artifactId>bcpkix-jdk15on</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>

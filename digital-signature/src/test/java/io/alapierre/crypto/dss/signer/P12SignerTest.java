@@ -19,7 +19,7 @@ class P12SignerTest {
 
     private final KeyStore.PasswordProtection pas = new KeyStore.PasswordProtection("123ewqasd".toCharArray());
     private P12Signer signer;
-    private final File token = new File("src/test/resources/Pieczec2.p12");
+    private final File token = new File("src/test/resources/stamp.p12");
 
     @BeforeAll
     void init() {

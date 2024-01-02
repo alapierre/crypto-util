@@ -43,7 +43,6 @@
         <dependency>
             <groupId>io.alapierre.commons</groupId>
             <artifactId>io-utils</artifactId>
-            <version>1.13</version>
         </dependency>
 
         <dependency>
