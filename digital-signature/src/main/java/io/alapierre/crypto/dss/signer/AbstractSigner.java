@@ -9,6 +9,7 @@ import eu.europa.esig.dss.token.SignatureTokenConnection;
 import eu.europa.esig.dss.validation.CommonCertificateVerifier;
 import eu.europa.esig.dss.xades.XAdESSignatureParameters;
 import eu.europa.esig.dss.xades.signature.XAdESService;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,6 +28,9 @@ public abstract class AbstractSigner {
 
     protected abstract @NotNull SignatureTokenConnection prepareToken() throws IOException;
 
+    @Setter
+    private boolean en319132 = true;
+
     public @NotNull DSSDocument signXades(@NotNull DSSDocument toSignDocument, @NotNull SignatureTokenConnection token) {
 
         DSSPrivateKeyEntry privateKey = findValidKey(token.getKeys());
@@ -37,7 +41,9 @@ public abstract class AbstractSigner {
         parameters.setDigestAlgorithm(DigestAlgorithm.SHA256);
         parameters.setSigningCertificate(privateKey.getCertificate());
 
-        CommonCertificateVerifier commonCertificateVerifier = new CommonCertificateVerifier();
+        if (!en319132) parameters.setEn319132(en319132); // for 100% compatibility
+
+        CommonCertificateVerifier commonCertificateVerifier = new CommonCertificateVerifier(true);
         XAdESService service = new XAdESService(commonCertificateVerifier);
 
         ToBeSigned toBeSigned = service.getDataToSign(toSignDocument, parameters);

@@ -37,6 +37,7 @@ class CardSignerTest {
     @Test
     @Disabled
     void testSign() throws IOException {
+        signer.setEn319132(false);
         DSSDocument signedDocument = signer.sign(Paths.get("src/test/resources", "pit_11.xml").toFile());
         File outFile = Paths.get("src/test/resources", "signed.xml").toFile();
         signedDocument.save(outFile.getAbsolutePath());
