@@ -30,13 +30,13 @@
             <dependency>
                 <groupId>org.bouncycastle</groupId>
                 <artifactId>bcprov-jdk18on</artifactId>
-                <version>${bc.version}</version>
+                <version>${bouncycastle.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.bouncycastle</groupId>
                 <artifactId>bcpkix-jdk18on</artifactId>
-                <version>${bc.version}</version>
+                <version>${bouncycastle.version}</version>
             </dependency>
 
             <!-- Xades digital signature-->
