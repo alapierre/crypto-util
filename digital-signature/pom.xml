@@ -12,7 +12,7 @@
     <artifactId>digital-signature</artifactId>
 
     <properties>
-        <digidoc4j.version>6.0</digidoc4j.version>
+        <digidoc4j.version>6.1</digidoc4j.version>
     </properties>
 
     <build>
@@ -74,10 +74,21 @@
             <version>${digidoc4j.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+            <artifactId>dss-jaxb-common</artifactId>
+            <version>${digidoc4j.version}</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>eu.europa.ec.joinup.sd-dss</groupId>-->
+<!--            <artifactId>dss-service</artifactId>-->
+<!--            <version>${digidoc4j.version}</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>eu.europa.ec.joinup.sd-dss</groupId>
-            <artifactId>dss-service</artifactId>
+            <artifactId>specs-xades</artifactId>
             <version>${digidoc4j.version}</version>
         </dependency>
 
