@@ -1,18 +1,9 @@
 package io.alapierre.crypto.dss.pdf.signer;
 
-import eu.europa.esig.dss.enumerations.DigestAlgorithm;
-import eu.europa.esig.dss.enumerations.SignatureLevel;
-import eu.europa.esig.dss.enumerations.SignaturePackaging;
 import eu.europa.esig.dss.model.DSSDocument;
 import eu.europa.esig.dss.model.InMemoryDocument;
-import eu.europa.esig.dss.model.SignatureValue;
-import eu.europa.esig.dss.model.ToBeSigned;
-import eu.europa.esig.dss.pades.PAdESSignatureParameters;
-import eu.europa.esig.dss.pades.signature.PAdESService;
-import eu.europa.esig.dss.token.DSSPrivateKeyEntry;
 import eu.europa.esig.dss.token.PasswordInputCallback;
 import eu.europa.esig.dss.token.Pkcs11SignatureToken;
-import eu.europa.esig.dss.validation.CommonCertificateVerifier;
 import io.alapierre.crypto.dss.common.misc.DllUtil;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +13,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
-
-import static io.alapierre.crypto.dss.common.KeyUtil.*;
 import static io.alapierre.crypto.dss.common.misc.DllUtil.resolveDllAbsolutePathAndFileName;
 
 /**
