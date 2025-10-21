@@ -1,8 +1,9 @@
 package io.alapierre.crypto.cipher;
 
 import lombok.val;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -11,7 +12,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
-import static io.alapierre.crypto.cipher.AesCipher.*;
+import static io.alapierre.crypto.cipher.AesCipher.getKeyFromPassword;
 import static io.alapierre.crypto.cipher.IvUtil.*;
 
 
@@ -34,7 +35,7 @@ public class AesCipherTest {
                 iv);
 
         System.out.println(encrypted);
-        Assert.assertNotNull(encrypted);
+        Assertions.assertNotNull(encrypted);
     }
 
     @Test
@@ -46,7 +47,7 @@ public class AesCipherTest {
         val res = AesCipher.decrypt(secretText, getKeyFromPassword("secret", "5674321"), createIv(iv));
 
         System.out.println(res);
-        Assert.assertNotNull(res);
-        Assert.assertEquals(PLAIN_TEXT, res);
+        Assertions.assertNotNull(res);
+        Assertions.assertEquals(PLAIN_TEXT, res);
     }
 }

@@ -1,8 +1,9 @@
 package io.alapierre.crypto.cipher;
 
 import lombok.val;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import static io.alapierre.crypto.cipher.AesCipher.getKeyFromPassword;
 import static io.alapierre.crypto.cipher.IvUtil.*;
 
@@ -24,7 +25,7 @@ public class AesGCMCipherTest {
         val encrypted = AesGCMCipher.encrypt(PLAIN_TEXT, getKeyFromPassword("secret", "5674321"), iv);
 
         System.out.println(encrypted);
-        Assert.assertNotNull(encrypted);
+        Assertions.assertNotNull(encrypted);
     }
 
     @Test
@@ -36,7 +37,7 @@ public class AesGCMCipherTest {
         val res = AesGCMCipher.decrypt(secretText, getKeyFromPassword("secret", "5674321"), createIv(iv));
 
         System.out.println(res);
-        Assert.assertNotNull(res);
-        Assert.assertEquals(PLAIN_TEXT, res);
+        Assertions.assertNotNull(res);
+        Assertions.assertEquals(PLAIN_TEXT, res);
     }
 }

@@ -2,12 +2,9 @@ package io.alapierre.crypto.cipher;
 
 import lombok.val;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -24,7 +21,7 @@ public class RsaCipherTest {
 
     public static final String PLAIN_TEXT_MESSAGE = "Ala ma kota, a kot ma Alę";
 
-    @BeforeClass
+    @BeforeAll
     public static void init() {
         Security.addProvider(new BouncyCastleProvider());
     }
@@ -32,19 +29,19 @@ public class RsaCipherTest {
     @Test
     public void loadTestPK() throws IOException {
         val pk = RsaCipher.loadPrivateKey(new File("src/test/resources/private.pem"), "secret".toCharArray());
-        Assert.assertNotNull(pk);
+        Assertions.assertNotNull(pk);
     }
 
     @Test
     public void loadPublicKey() throws IOException {
         val publicKey = RsaCipher.publicKeyFromPem(new File("src/test/resources/public.pem"));
-        Assert.assertNotNull(publicKey);
+        Assertions.assertNotNull(publicKey);
     }
 
     @Test
     public void loadPublicKeyInDerFormat() throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
         val publicKey = RsaCipher.publicKey(new File("src/test/resources/public.der"));
-        Assert.assertNotNull(publicKey);
+        Assertions.assertNotNull(publicKey);
     }
 
     @Test
@@ -52,7 +49,7 @@ public class RsaCipherTest {
         val publicKey = RsaCipher.publicKey(new File("src/test/resources/public.der"));
         val secret = RsaCipher.encode(PLAIN_TEXT_MESSAGE, publicKey);
         System.out.println(secret);
-        Assert.assertNotNull(secret);
+        Assertions.assertNotNull(secret);
     }
 
     @Test
@@ -63,7 +60,7 @@ public class RsaCipherTest {
 
         System.out.println(res);
 
-        Assert.assertNotNull(res, "secret text should not be null");
+        Assertions.assertNotNull(res, "secret text should not be null");
     }
 
     @Test
@@ -79,7 +76,7 @@ public class RsaCipherTest {
         val res = RsaCipher.decode(secretText, pk);
 
         System.out.println(res);
-        Assert.assertEquals(PLAIN_TEXT_MESSAGE, res);
+        Assertions.assertEquals(PLAIN_TEXT_MESSAGE, res);
     }
 
     @Test
@@ -96,7 +93,7 @@ public class RsaCipherTest {
 
         System.out.println(res);
 
-        Assert.assertNotNull(res, "secret text should not be null");
+        Assertions.assertNotNull(res, "secret text should not be null");
     }
 
 }
