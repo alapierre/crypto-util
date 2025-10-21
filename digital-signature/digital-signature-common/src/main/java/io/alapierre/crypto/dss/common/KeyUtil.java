@@ -3,7 +3,6 @@ package io.alapierre.crypto.dss.common;
 import eu.europa.esig.dss.token.DSSPrivateKeyEntry;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
 @Slf4j
 public class KeyUtil {
 
-    public static @NotNull DSSPrivateKeyEntry findValidKey(@NonNull List<DSSPrivateKeyEntry> keys) {
+    public static DSSPrivateKeyEntry findValidKey(@NonNull List<DSSPrivateKeyEntry> keys) {
 
         Date now = new Date();
 

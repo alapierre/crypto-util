@@ -11,7 +11,7 @@ import eu.europa.esig.dss.pades.signature.PAdESService;
 import eu.europa.esig.dss.spi.validation.CommonCertificateVerifier;
 import eu.europa.esig.dss.token.DSSPrivateKeyEntry;
 import eu.europa.esig.dss.token.SignatureTokenConnection;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 import static io.alapierre.crypto.dss.common.KeyUtil.findValidKey;
 
@@ -21,7 +21,7 @@ import static io.alapierre.crypto.dss.common.KeyUtil.findValidKey;
  */
 public abstract class Signer {
 
-    protected  @NotNull DSSDocument singPades(@NotNull DSSDocument toSignDocument, @NotNull SignatureTokenConnection signingToken) {
+    DSSDocument singPades(@NonNull DSSDocument toSignDocument, @NonNull SignatureTokenConnection signingToken) {
         DSSPrivateKeyEntry privateKey = findValidKey(signingToken.getKeys());
 
         CommonCertificateVerifier commonCertificateVerifier = new CommonCertificateVerifier();

@@ -9,7 +9,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
@@ -28,18 +27,17 @@ public class CardSigner extends Signer {
     private final int slot;
     private final PasswordInputCallback passwordInputCallback;
 
-    public @NotNull DSSDocument signDocument(@NonNull InputStream document) {
+    public DSSDocument signDocument(@NonNull InputStream document) {
         DSSDocument toSignDocument = new InMemoryDocument(document);
         return sign(toSignDocument);
     }
 
-    public @NotNull DSSDocument signDocument(byte[] document) {
+    public DSSDocument signDocument(byte[] document) {
         DSSDocument toSignDocument = new InMemoryDocument(document);
         return sign(toSignDocument);
     }
 
-    @NotNull
-    private DSSDocument sign(@NotNull DSSDocument toSignDocument) {
+    private DSSDocument sign(@NonNull DSSDocument toSignDocument) {
 
         DllUtil.DllInfo dllInfo = resolveDllAbsolutePathAndFileName(relativePathToDll, dllName);
         try (val signingToken = new Pkcs11SignatureToken(dllInfo.getFullPath(), passwordInputCallback, slot)) {
