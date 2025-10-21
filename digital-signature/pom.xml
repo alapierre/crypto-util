@@ -9,6 +9,8 @@
 
     <artifactId>digital-signature</artifactId>
     <packaging>pom</packaging>
+    <name>Digital Signature</name>
+
     <modules>
         <module>digital-signature-common</module>
         <module>digital-signature-pdf</module>

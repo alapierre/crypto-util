@@ -8,6 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rsa-util</artifactId>
+    <name>rsa util</name>
 
     <build>
         <plugins>

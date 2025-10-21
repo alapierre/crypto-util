@@ -8,6 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cipher</artifactId>
+    <name>Cipher utils</name>
 
     <build>
         <plugins>

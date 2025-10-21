@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>digital-signature-xades</artifactId>
+    <name>Digital Signature xades</name>
 
     <properties>
         <digidoc4j.version>6.3</digidoc4j.version>

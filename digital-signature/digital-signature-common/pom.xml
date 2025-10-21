@@ -8,6 +8,7 @@
     </parent>
 
     <artifactId>digital-signature-common</artifactId>
+    <name>Digital Signature Common</name>
 
     <build>
         <plugins>

@@ -65,7 +65,7 @@
                     <localCheckout>true</localCheckout>
                     <pushChanges>false</pushChanges>
                     <tagNameFormat>@{project.version}</tagNameFormat>
-                    <arguments>-Prelease-sign-artifacts</arguments>
+                    <releaseProfiles>release-sign-artifacts</releaseProfiles>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -231,12 +231,6 @@
         <!-- GPG Signature on release -->
         <profile>
             <id>release-sign-artifacts</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
