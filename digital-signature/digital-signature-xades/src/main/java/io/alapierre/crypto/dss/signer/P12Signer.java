@@ -4,7 +4,6 @@ import eu.europa.esig.dss.token.Pkcs12SignatureToken;
 import eu.europa.esig.dss.token.SignatureTokenConnection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +20,7 @@ public class P12Signer extends AbstractSigner {
     private final KeyStore.PasswordProtection passwordProtection;
     private final File signatureToken;
 
-    protected @NotNull SignatureTokenConnection prepareToken() throws IOException {
+    protected SignatureTokenConnection prepareToken() throws IOException {
         return new Pkcs12SignatureToken(signatureToken, passwordProtection);
     }
 

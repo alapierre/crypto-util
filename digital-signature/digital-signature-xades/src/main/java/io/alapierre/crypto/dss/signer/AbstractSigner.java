@@ -9,9 +9,10 @@ import eu.europa.esig.dss.token.DSSPrivateKeyEntry;
 import eu.europa.esig.dss.token.SignatureTokenConnection;
 import eu.europa.esig.dss.xades.XAdESSignatureParameters;
 import eu.europa.esig.dss.xades.signature.XAdESService;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -26,12 +27,12 @@ import java.util.List;
 @Slf4j
 public abstract class AbstractSigner {
 
-    protected abstract @NotNull SignatureTokenConnection prepareToken() throws IOException;
+    protected abstract SignatureTokenConnection prepareToken() throws IOException;
 
     @Setter
     private boolean en319132 = true;
 
-    public @NotNull DSSDocument signXades(@NotNull DSSDocument toSignDocument, @NotNull SignatureTokenConnection token) {
+    public @NonNull DSSDocument signXades(@NonNull DSSDocument toSignDocument, @NonNull SignatureTokenConnection token) {
 
         DSSPrivateKeyEntry privateKey = findValidKey(token.getKeys());
 
@@ -52,24 +53,23 @@ public abstract class AbstractSigner {
         return service.signDocument(toSignDocument, parameters, signatureValue);
     }
 
-    public @NotNull DSSDocument sign(@NotNull File documentPath) throws IOException {
+    public @NonNull DSSDocument sign(@NonNull File documentPath) throws IOException {
         DSSDocument toSignDocument = new FileDocument(documentPath);
         return prepareAndSign(toSignDocument);
     }
 
-    public @NotNull DSSDocument sign(@NotNull InputStream document) throws IOException {
+    public @NonNull DSSDocument sign(@NonNull InputStream document) throws IOException {
         DSSDocument toSignDocument = new InMemoryDocument(document);
         return prepareAndSign(toSignDocument);
     }
 
-    @NotNull
     private DSSDocument prepareAndSign(DSSDocument toSignDocument) throws IOException {
         try (SignatureTokenConnection token = prepareToken()) {
             return signXades(toSignDocument, token);
         }
     }
 
-    protected @NotNull DSSPrivateKeyEntry findValidKey(@NotNull List<DSSPrivateKeyEntry> keys) {
+    protected DSSPrivateKeyEntry findValidKey(@NonNull List<DSSPrivateKeyEntry> keys) {
 
         Date now = new Date();
 
@@ -85,7 +85,7 @@ public abstract class AbstractSigner {
         throw new IllegalStateException("Brak ważnego certyfikatu");
     }
 
-    protected boolean isDayInRange(@NotNull Date day, @NotNull Date from, @NotNull Date to) {
+    protected boolean isDayInRange(@NonNull Date day, @NonNull Date from, @NonNull Date to) {
         return !(day.before(from) || day.after(to));
     }
 

@@ -6,7 +6,6 @@ import eu.europa.esig.dss.token.SignatureTokenConnection;
 import io.alapierre.crypto.misc.DllUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 
 import static io.alapierre.crypto.misc.DllUtil.resolveDllAbsolutePathAndFileName;
 
@@ -24,7 +23,7 @@ public class CardSigner extends AbstractSigner {
     private final PasswordInputCallback passwordInputCallback;
 
     @Override
-    protected @NotNull SignatureTokenConnection prepareToken() {
+    protected SignatureTokenConnection prepareToken() {
         DllUtil.DllInfo dllInfo = resolveDllAbsolutePathAndFileName(relativePathToDll, dllName);
         return new Pkcs11SignatureToken(dllInfo.getFullPath(), passwordInputCallback, slot);
     }
