@@ -19,7 +19,8 @@ buildNumber.properties
 *.iml
 out
 gen
-digital-signature/src/test/resources/signed2.xml
-/digital-singnature-master/digital-signature-pdf/src/test/resources/signed.pdf
-/digital-signature-master/digital-signature-pdf/src/test/resources/signed.pdf
-/digital-signature/digital-signature-pdf/src/test/resources/signed.pdf
+
+digital-singnature-master/digital-signature-pdf/src/test/resources/signed.pdf
+digital-signature-master/digital-signature-pdf/src/test/resources/signed.pdf
+digital-signature/digital-signature-pdf/src/test/resources/signed.pdf
+digital-signature/digital-signature-xades/src/test/resources/signed2.xml
