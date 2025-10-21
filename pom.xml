@@ -44,13 +44,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j.version>2.0.10</slf4j.version>
         <logback-classic.version>1.5.20</logback-classic.version>
-        <lombok.version>1.18.42</lombok.version>
+        <lombok.version>${maven-compiler-plugin.version}</lombok.version>
         <annotations.version>24.1.0</annotations.version>
         <sonar.organization>alapierre</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <common-utils.version>1.15</common-utils.version>
         <bouncycastle.version>1.82</bouncycastle.version>
         <junit-jupiter.version>5.14.0</junit-jupiter.version>
+        <maven-compiler-plugin.version>1.18.42</maven-compiler-plugin.version>
     </properties>
 
     <build>
@@ -123,6 +124,15 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.14.1</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${maven-compiler-plugin.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -148,6 +158,7 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <optional>true</optional>
+                <scope>provided</scope>
             </dependency>
 
             <dependency>

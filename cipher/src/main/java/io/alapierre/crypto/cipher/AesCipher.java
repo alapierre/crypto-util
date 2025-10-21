@@ -1,7 +1,6 @@
 package io.alapierre.crypto.cipher;
 
-import lombok.val;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
@@ -10,7 +9,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
@@ -26,7 +24,7 @@ public class AesCipher {
     //CBC (Cipher Block Chaining)
     public static final String CBC_ALGORITHM = "AES/CBC/PKCS5Padding";
 
-    public static byte[] encryptIntoBytes(@NotNull String input, @NotNull SecretKey key, @NotNull IvParameterSpec iv)
+    public static byte[] encryptIntoBytes(@NonNull String input, @NonNull SecretKey key, @NonNull IvParameterSpec iv)
             throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
@@ -36,8 +34,8 @@ public class AesCipher {
         return cipher.doFinal(input.getBytes());
     }
 
-    @NotNull
-    public static String encrypt(@NotNull String input, @NotNull SecretKey key, @NotNull IvParameterSpec iv)
+
+    public static String encrypt(@NonNull String input, @NonNull SecretKey key, @NonNull IvParameterSpec iv)
             throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
@@ -46,8 +44,7 @@ public class AesCipher {
         return Base64.getEncoder().encodeToString(cipherText);
     }
 
-    @NotNull
-    public static String decrypt(byte[] cipherText, @NotNull SecretKey key, @NotNull IvParameterSpec iv)
+    public static String decrypt(byte[] cipherText, @NonNull SecretKey key, @NonNull IvParameterSpec iv)
             throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
@@ -58,8 +55,7 @@ public class AesCipher {
         return new String(plainText);
     }
 
-    @NotNull
-    public static String decrypt(@NotNull String cipherText, @NotNull SecretKey key, @NotNull IvParameterSpec iv)
+    public static String decrypt(@NonNull String cipherText, @NonNull SecretKey key, @NonNull IvParameterSpec iv)
             throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
@@ -70,8 +66,7 @@ public class AesCipher {
         return new String(plainText);
     }
 
-    @NotNull
-    public static SecretKey getKeyFromPassword(@NotNull String password, @NotNull String salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static SecretKey getKeyFromPassword(@NonNull String password, @NonNull String salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), 65536, 256);
         return new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
