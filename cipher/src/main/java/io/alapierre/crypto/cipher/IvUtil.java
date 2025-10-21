@@ -1,7 +1,7 @@
 package io.alapierre.crypto.cipher;
 
+import lombok.NonNull;
 import lombok.val;
-import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.spec.IvParameterSpec;
 import java.security.SecureRandom;
@@ -15,25 +15,25 @@ public class IvUtil {
 
     private static final SecureRandom secureRandom = new SecureRandom();
 
-    @NotNull
+
     public static IvParameterSpec generateRandomIv() {
         return generateRandomIv(16);
     }
 
-    @NotNull
+
     public static IvParameterSpec generateRandomIv(int len) {
         byte[] iv = new byte[len];
         secureRandom.nextBytes(iv);
         return new IvParameterSpec(iv);
     }
 
-    @NotNull
-    public static String ivToString(@NotNull IvParameterSpec iv) {
+
+    public static String ivToString(@NonNull IvParameterSpec iv) {
         return Base64.getEncoder().encodeToString(iv.getIV());
     }
 
-    @NotNull
-    public static IvParameterSpec createIv(@NotNull String base64encodedString) {
+
+    public static IvParameterSpec createIv(@NonNull String base64encodedString) {
         val iv = Base64.getDecoder().decode(base64encodedString);
         return new IvParameterSpec(iv);
     }

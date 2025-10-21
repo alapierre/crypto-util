@@ -1,6 +1,7 @@
 package io.alapierre.crypto.cipher;
 
 import io.alapierre.io.IOUtils;
+import lombok.NonNull;
 import lombok.val;
 
 import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
@@ -10,7 +11,6 @@ import org.bouncycastle.openssl.PEMKeyPair;
 import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 import org.bouncycastle.openssl.jcajce.JcePEMDecryptorProviderBuilder;
-import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -133,8 +133,7 @@ public class RsaCipher {
      * @param plainText text to encrypt
      * @return encrypted text Base64 encoded
      */
-    @NotNull
-    public static String encode(@NotNull String plainText, PublicKey publicKey) throws NoSuchPaddingException,
+    public static String encode(@NonNull String plainText, PublicKey publicKey) throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 
         return encode(plainText.getBytes(), publicKey);
@@ -146,7 +145,6 @@ public class RsaCipher {
      * @param message to encrypt
      * @return encrypted text Base64 encoded
      */
-    @NotNull
     public static String encode(byte[] message, PublicKey publicKey) throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 
@@ -164,14 +162,13 @@ public class RsaCipher {
      * @param encryptedTextBaseEncoded secret message Base64 encoded
      * @return encrypted text
      */
-    @NotNull
-    public static String decode(@NotNull String encryptedTextBaseEncoded, PrivateKey privateKey) throws NoSuchPaddingException,
+    public static String decode(@NonNull String encryptedTextBaseEncoded, PrivateKey privateKey) throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 
         return new String(decodeAsBytes(encryptedTextBaseEncoded, privateKey));
     }
 
-    public static byte[] decodeAsBytes(@NotNull String encryptedTextBaseEncoded, PrivateKey privateKey) throws NoSuchPaddingException,
+    public static byte[] decodeAsBytes(@NonNull String encryptedTextBaseEncoded, PrivateKey privateKey) throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 
         val encryptedText = Base64.getDecoder().decode(encryptedTextBaseEncoded);
