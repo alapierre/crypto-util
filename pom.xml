@@ -9,7 +9,7 @@
 
     <groupId>io.alapierre.crypto</groupId>
     <artifactId>crypto-util</artifactId>
-    <version>2.0.3-SNAPSHOT</version>
+    <version>2.0.3</version>
 
     <modules>
         <module>cipher</module>
@@ -36,7 +36,7 @@
         <connection>scm:git:git@github.com:alapierre/crypto-util.git</connection>
         <developerConnection>scm:git:git@github.com:alapierre/crypto-util.git</developerConnection>
         <url>https://github.com/alapierre/crypto-util</url>
-      <tag>HEAD</tag>
+      <tag>2.0.3</tag>
   </scm>
 
     <properties>
