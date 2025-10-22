@@ -48,7 +48,7 @@
         <annotations.version>24.1.0</annotations.version>
         <sonar.organization>alapierre</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <common-utils.version>1.15</common-utils.version>
+        <common-utils.version>1.18</common-utils.version>
         <bouncycastle.version>1.82</bouncycastle.version>
         <junit-jupiter.version>5.14.0</junit-jupiter.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
