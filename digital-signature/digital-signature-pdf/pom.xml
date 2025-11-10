@@ -11,7 +11,7 @@
     <name>Digital Signature PDF</name>
 
     <properties>
-        <pdfbox.version>2.0.30</pdfbox.version>
+        <pdfbox.version>2.0.35</pdfbox.version>
     </properties>
 
     <build>
