@@ -42,7 +42,7 @@
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j.version>2.0.10</slf4j.version>
+        <slf4j.version>2.0.17</slf4j.version>
         <logback-classic.version>1.5.20</logback-classic.version>
         <lombok.version>1.18.42</lombok.version>
         <annotations.version>24.1.0</annotations.version>
