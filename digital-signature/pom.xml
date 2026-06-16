@@ -18,35 +18,17 @@
     </modules>
 
     <properties>
-        <digidoc4j.version>6.4</digidoc4j.version>
+        <dss.version>6.4</dss.version>
+        <pdfbox.version>3.0.7</pdfbox.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
 
-            <!--
-        in dss master pom: <bouncycastle.version>1.70</bouncycastle.version>
-        -->
-            <dependency>
-                <groupId>org.bouncycastle</groupId>
-                <artifactId>bcprov-jdk18on</artifactId>
-                <version>${bouncycastle.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.bouncycastle</groupId>
-                <artifactId>bcpkix-jdk18on</artifactId>
-                <version>${bouncycastle.version}</version>
-            </dependency>
-
-            <!-- Xades digital signature-->
-
-            <!--        eu.europa.ec.joinup.sd-dss-->
-
             <dependency>
                 <groupId>eu.europa.ec.joinup.sd-dss</groupId>
                 <artifactId>dss-document</artifactId>
-                <version>${digidoc4j.version}</version>
+                <version>${dss.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.bouncycastle</groupId>
@@ -63,7 +45,7 @@
             <dependency>
                 <groupId>eu.europa.ec.joinup.sd-dss</groupId>
                 <artifactId>dss-service</artifactId>
-                <version>${digidoc4j.version}</version>
+                <version>${dss.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.bouncycastle</groupId>
@@ -75,55 +57,91 @@
             <dependency>
                 <groupId>eu.europa.ec.joinup.sd-dss</groupId>
                 <artifactId>dss-tsl-validation</artifactId>
-                <version>${digidoc4j.version}</version>
+                <version>${dss.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>eu.europa.ec.joinup.sd-dss</groupId>
                 <artifactId>dss-asic-cades</artifactId>
-                <version>${digidoc4j.version}</version>
+                <version>${dss.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>eu.europa.ec.joinup.sd-dss</groupId>
                 <artifactId>dss-asic-xades</artifactId>
-                <version>${digidoc4j.version}</version>
+                <version>${dss.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>eu.europa.ec.joinup.sd-dss</groupId>
                 <artifactId>dss-cades</artifactId>
-                <version>${digidoc4j.version}</version>
+                <version>${dss.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>eu.europa.ec.joinup.sd-dss</groupId>
                 <artifactId>dss-pades</artifactId>
-                <version>${digidoc4j.version}</version>
+                <version>${dss.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>eu.europa.ec.joinup.sd-dss</groupId>
                 <artifactId>dss-xades</artifactId>
-                <version>${digidoc4j.version}</version>
+                <version>${dss.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>eu.europa.ec.joinup.sd-dss</groupId>
                 <artifactId>dss-token</artifactId>
-                <version>${digidoc4j.version}</version>
+                <version>${dss.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>eu.europa.ec.joinup.sd-dss</groupId>
                 <artifactId>dss-utils-google-guava</artifactId>
-                <version>${digidoc4j.version}</version>
+                <version>${dss.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.bouncycastle</groupId>
                         <artifactId>bcprov-jdk15on</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-cms-stream</artifactId>
+                <version>${dss.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-jaxb-common</artifactId>
+                <version>${dss.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-pades-pdfbox</artifactId>
+                <version>${dss.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-utils-apache-commons</artifactId>
+                <version>${dss.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>specs-xades</artifactId>
+                <version>${dss.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>${pdfbox.version}</version>
             </dependency>
 
         </dependencies>
