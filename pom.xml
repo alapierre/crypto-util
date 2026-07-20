@@ -50,7 +50,7 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <common-utils.version>1.15</common-utils.version>
         <bouncycastle.version>1.84</bouncycastle.version>
-        <junit-jupiter.version>5.14.0</junit-jupiter.version>
+        <junit-jupiter.version>5.14.4</junit-jupiter.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
     </properties>
 
